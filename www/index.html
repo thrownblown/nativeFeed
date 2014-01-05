@@ -52,7 +52,8 @@
               </header>
               <content has-header="true">
                   <ul class="list">
-                      <a href="{{item.link}}" class="item item-icon-left" ng-repeat="item in list">
+                      <a href="{{item.link}}" class="item item-icon-left" ng-repeat="item in list"
+                         ng-click="openLeft()">
                           <i ng-class="item.iconClass"></i>
                           {{item.text}}
                       </a>
