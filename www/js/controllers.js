@@ -4,7 +4,7 @@ angular.module('sideMenuApp.controllers', [])
         // "MenuService" is a service returning mock data (services.js)
         $scope.list = MenuService.all();
 
-        $scope.openLeft = function () {
+        $scope.toggleLeft = function () {
             $scope.sideMenuController.toggleLeft();
         };
     })

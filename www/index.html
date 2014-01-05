@@ -38,7 +38,7 @@
           <!-- Center content -->
           <pane side-menu-content nav-router>
               <header class="bar bar-header bar-assertive">
-                  <button class="button button-icon" ng-click="openLeft()"><i class="icon ion-navicon"></i></button>
+                  <button class="button button-icon" ng-click="toggleLeft()"><i class="icon ion-navicon"></i></button>
                   <h1 class="title">Slide Me</h1>
               </header>
               <!-- where the content of each page will be rendered -->
@@ -53,7 +53,7 @@
               <content has-header="true">
                   <ul class="list">
                       <a href="{{item.link}}" class="item item-icon-left" ng-repeat="item in list"
-                         ng-click="openLeft()">
+                         ng-click="toggleLeft()">
                           <i ng-class="item.iconClass"></i>
                           {{item.text}}
                       </a>
