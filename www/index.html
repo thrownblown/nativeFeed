@@ -29,16 +29,38 @@
     <script src="js/controllers.js"></script>
   </head>
 
-  <!-- 'starter' is the name of this angular module (js/app.js)-->
-  <body ng-app="starter">
+  <!-- 'sideMenuApp' is the name of this angular module (js/app.js)-->
+  <body ng-app="sideMenuApp">
 
-    <!-- Our navigation router with some animations set -->
-    <pane nav-router animation="slide-left-right-ios7">
-      <!-- The nav bar that will be updated as we navigate -->
-      <nav-bar class="nav-title-slide-ios7" type="bar-positive" back-button-type="button-icon" back-button-icon="icon ion-arrow-left-c"></nav-bar>
+  <div ng-controller="MenuController">
+      <side-menus>
 
-      <!-- where the content of each page will be rendered -->
-      <ng-view></ng-view>
-    </pane>
+          <!-- Center content -->
+          <pane id="navRouter" side-menu-content nav-router>
+              <header class="bar bar-header bar-assertive">
+                  <button class="button button-icon" ng-click="openLeft()"><i class="icon ion-navicon"></i></button>
+                  <h1 class="title">Slide Me</h1>
+              </header>
+              <!-- where the content of each page will be rendered -->
+              <ng-view></ng-view>
+          </pane>
+
+          <!-- Left Side Menu -->
+          <side-menu side="left">
+              <header class="bar bar-header bar-assertive">
+                  <h1 class="title">Menu</h1>
+              </header>
+              <content has-header="true">
+                  <ul class="list">
+                      <a href="{{item.link}}" class="item item-icon-left" ng-repeat="item in list">
+                          <i ng-class="item.iconClass"></i>
+                          {{item.text}}
+                      </a>
+                  </ul>
+              </content>
+          </side-menu>
+      </side-menus>
+  </div>
+
   </body>
 </html>

@@ -1,6 +1,13 @@
-ionic-angular-cordova-seed
+ionic-side-menu-with-navigation
 ==========================
 
-The perfect starting point for an Ionic project.
+The project has been forked from ionic-angular-cordova-seed. It contains a fully functional app that has a Side Menu
+with navigation.
 
-- [Ionic Tutorials](http://ionicframework.com/tutorials/)
+The aim of this project was to extend the functionality demonstrated [here](http://ionicframework
+.com/examples/side-menu/) by allowing navigation by clicking on the items within the side menu.
+
+The project is structured well with separate app.js, controllers.js and services.js files.
+
+Changes have only been made to /templates, index.html and app.js, controllers.js and services.js. Everything else
+remains the same as the ionic-angular-cordova-seed project.

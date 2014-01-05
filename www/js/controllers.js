@@ -1,24 +1,22 @@
-angular.module('starter.controllers', [])
+angular.module('sideMenuApp.controllers', [])
 
-.controller('AppCtrl', function($scope) {
-  // Main app controller, empty for the example
-})
+    .controller('MenuController', function ($scope, MenuService) {
+        // "MenuService" is a service returning mock data (services.js)
+        $scope.list = MenuService.all();
 
-// A simple controller that fetches a list of data
-.controller('PetsTabCtrl', function($scope, Pets) {
-  // "Pets" is a service returning mock data (services.js)
-  $scope.pets = Pets.all();
+        $scope.openLeft = function () {
+            $scope.sideMenuController.toggleLeft();
+        };
+    })
 
-  $scope.$on('tab.shown', function() {
-    // Might do a load here
-  });
-  $scope.$on('tab.hidden', function() {
-    // Might recycle content here
-  });
-})
+    .controller('OneController', function ($scope) {
+        $scope.title = "Page One Title";
+    })
 
-// A simple controller that shows a tapped item's data
-.controller('PetCtrl', function($scope, $routeParams, Pets) {
-  // "Pets" is a service returning mock data (services.js)
-  $scope.pet = Pets.get($routeParams.petId);
-});
+    .controller('TwoController', function ($scope) {
+        $scope.title = "Page Two Title";
+    })
+
+    .controller('ThreeController', function ($scope) {
+        $scope.title = "Page Three Title";
+    });
