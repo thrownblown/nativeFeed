@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Ionic Seed</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -27,41 +27,40 @@
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
-  </head>
+</head>
 
-  <!-- 'sideMenuApp' is the name of this angular module (js/app.js)-->
-  <body ng-app="sideMenuApp">
+<!-- 'sideMenuApp' is the name of this angular module (js/app.js)-->
+<body ng-app="sideMenuApp">
 
-  <div ng-controller="MenuController">
-      <side-menus>
+<div ng-controller="MenuController">
+    <side-menus>
 
-          <!-- Center content -->
-          <pane side-menu-content nav-router>
-              <header class="bar bar-header bar-assertive">
-                  <button class="button button-icon" ng-click="toggleLeft()"><i class="icon ion-navicon"></i></button>
-                  <h1 class="title">Slide Me</h1>
-              </header>
-              <!-- where the content of each page will be rendered -->
-              <ng-view></ng-view>
-          </pane>
+        <!-- Center content -->
+        <pane side-menu-content nav-router>
+            <header class="bar bar-header bar-assertive">
+                <button class="button button-icon" ng-click="toggleLeft()"><i class="icon ion-navicon"></i></button>
+                <h1 class="title">Slide Me</h1>
+            </header>
+            <!-- where the content of each page will be rendered -->
+            <ng-view></ng-view>
+        </pane>
 
-          <!-- Left Side Menu -->
-          <side-menu side="left">
-              <header class="bar bar-header bar-assertive">
-                  <h1 class="title">Menu</h1>
-              </header>
-              <content has-header="true">
-                  <ul class="list">
-                      <a href="{{item.link}}" class="item item-icon-left" ng-repeat="item in list"
-                         ng-click="toggleLeft()">
-                          <i ng-class="item.iconClass"></i>
-                          {{item.text}}
-                      </a>
-                  </ul>
-              </content>
-          </side-menu>
-      </side-menus>
-  </div>
+        <!-- Left Side Menu -->
+        <side-menu side="left">
+            <header class="bar bar-header bar-assertive">
+                <h1 class="title">Menu</h1>
+            </header>
+            <content has-header="true">
+                <ul class="list" ng-click="toggleLeft()">
+                    <a href="{{item.link}}" class="item item-icon-left" ng-repeat="item in list">
+                        <i ng-class="item.iconClass"></i>
+                        {{item.text}}
+                    </a>
+                </ul>
+            </content>
+        </side-menu>
+    </side-menus>
+</div>
 
-  </body>
+</body>
 </html>
