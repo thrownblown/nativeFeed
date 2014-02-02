@@ -11,13 +11,12 @@
     <!-- your app's css -->
     <link href="css/app.css" rel="stylesheet">
 
-    <!-- ionic/angularjs scripts -->
+    <!-- angularjs scripts -->
     <script src="js/ionic.js"></script>
     <script src="js/angular/angular.js"></script>
     <script src="js/angular/angular-animate.js"></script>
-    <script src="js/angular/angular-route.js"></script>
-    <script src="js/angular/angular-touch.js"></script>
     <script src="js/angular/angular-sanitize.js"></script>
+    <script src="js/angular-ui/angular-ui-router.js"></script>
     <script src="js/ionic-angular.js"></script>
 
     <!-- cordova script -->
@@ -36,13 +35,10 @@
     <side-menus>
 
         <!-- Center content -->
-        <pane side-menu-content nav-router>
-            <header class="bar bar-header bar-assertive">
-                <button class="button button-icon" ng-click="toggleLeft()"><i class="icon ion-navicon"></i></button>
-                <h1 class="title">Slide Me</h1>
-            </header>
-            <!-- where the content of each page will be rendered -->
-            <ng-view></ng-view>
+        <pane side-menu-content>
+            <nav-bar type="bar-assertive" back-button-type="button-icon" back-button-icon="ion-arrow-left-c"></nav-bar>
+
+            <nav-view></nav-view>
         </pane>
 
         <!-- Left Side Menu -->
@@ -51,12 +47,12 @@
                 <h1 class="title">Menu</h1>
             </header>
             <content has-header="true">
-                <ul class="list" ng-click="toggleLeft()">
-                    <a href="{{item.link}}" class="item item-icon-left" ng-repeat="item in list">
+                <list>
+                    <item ng-click="goTo(item.link)" class="item item-icon-left" ng-repeat="item in list">
                         <i ng-class="item.iconClass"></i>
                         {{item.text}}
-                    </a>
-                </ul>
+                    </item>
+                </list>
             </content>
         </side-menu>
     </side-menus>
