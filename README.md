@@ -1,6 +1,8 @@
 ionic-side-menu-with-navigation
 ==========================
 
+## Updated to work with v 0.9.23 of Ionic Framework
+
 ## Purpose
 The project has been forked from ionic-angular-cordova-seed. It contains a fully functional app that has a Side Menu
 with navigation.
