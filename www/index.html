@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Ionic Seed</title>
+    <title>blackbox</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <!-- ionic css -->
@@ -31,6 +31,12 @@
 
 <!-- 'sideMenuApp' is the name of this angular module (js/app.js)-->
 <body ng-app="sideMenuApp">
+<script src="http://191.236.103.192:80/socket.io/socket.io.js"></script>
+
+<script>
+  // var socket = io.connect('localhost:80');
+  var socket = io.connect('http://191.236.103.192:80');
+</script>
 
 <div ng-controller="MenuController">
     <ion-side-menus>

@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionicframework.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>StarterApp</name>
+    <name>blackbox</name>
     <description>
-        A sample Ionic Framework app using Cordova and AngularJS
+        yammer for bike messengers
     </description>
-    <author email="max@drifty.com" href="http://ionicframework.com">
-        Apache Cordova Team
-    </author>
+    <author email="alex@tcbcourier.com" href="http://tcbcourier.com">
+        OrderNear // TCB COurier
     <content src="index.html" />
     <access origin="*" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
+    <access origin="http://twinjet.cloudapp.net/" />
 </widget>
