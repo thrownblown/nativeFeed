@@ -5,12 +5,11 @@
         yammer for bike messengers
     </description>
     <author email="alex@tcbcourier.com" href="http://tcbcourier.com">
-        OrderNear // TCB COurier
     <content src="index.html" />
     <access origin="*" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
-    <access origin="http://twinjet.cloudapp.net/" />
+    <access origin="http://191.236.103.192:80" />
 </widget>
