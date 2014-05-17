@@ -6,7 +6,6 @@
     </description>
     <author email="alex@tcbcourier.com" href="http://tcbcourier.com">
     <content src="index.html" />
-    <access origin="*" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
