@@ -11,7 +11,7 @@ angular.module('sideMenuApp.controllers', [])
         };
     })
 
-    .controller('OneController', function ($scope) {
+    .controller('OneController', function ($scope, socket) {
         $scope.navTitle = "Page One Title";
 
         $scope.leftButtons = [{
@@ -22,6 +22,49 @@ angular.module('sideMenuApp.controllers', [])
         }];
 
         $scope.rightButtons = [];
+
+        $scope.chats = {};
+
+        $scope.refreshChats = function(){
+          socket.emit('hello');
+        }
+
+        $scope.pullChats = function (){
+          alert('hello pull chats');
+          $scope.refreshChats();
+          $scope.fetchChats();
+        }
+
+        $scope.fetchChats = function() {
+          var chatArr = $scope.chats;
+          chatArr = Object.keys(chatArr).sort();
+          var chat = $scope.chats[chatArr[0]];
+          // console.log(chatArr, chat);
+          socket.emit('fetch', chat)
+        } 
+
+        socket.on('newMessage', function(data) {
+            // console.log('fishon', data);
+            var newChat = data.data;
+            $scope.chats[newChat._id] = newChat;
+            $scope.getAvatars();
+        });
+
+        $scope.sendChat = function(chat) {
+            if (!isChatValid(chat)) {
+                // console.log('Invalid chat, overriding "send".');
+                return;
+            }
+            socket.emit('newChat', {
+                user: $scope.user.name,
+                body: chat.body,
+                image: '',
+                type: 200
+            });
+            // resetChatForm(chat);
+        }
+
+        $scope.refreshChats();
     })
 
     .controller('TwoController', function ($scope) {
