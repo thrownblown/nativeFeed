@@ -8,7 +8,6 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <access origin="*" />
     <access origin="http://191.236.103.192:80" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />

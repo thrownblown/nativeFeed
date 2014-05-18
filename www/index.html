@@ -27,15 +27,19 @@
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/socket.io.js"></script>
 </head>
 
 <!-- 'sideMenuApp' is the name of this angular module (js/app.js)-->
 <body ng-app="sideMenuApp">
-<script src="http://191.236.103.192:80/socket.io/socket.io.js"></script>
 
 <script>
   // var socket = io.connect('localhost:80');
+  // var socket = io.connect('http://191.236.103.192:80');
   var socket = io.connect('http://191.236.103.192:80');
+  socket.on('connect', function(){
+    console.log('connection are go');
+  });
 </script>
 
 <div ng-controller="MenuController">
