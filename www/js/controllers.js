@@ -25,12 +25,64 @@ angular.module('sideMenuApp.controllers', [])
 
         $scope.chats = {};
 
+        function loadScript(url, callback) {
+            var head = document.getElementsByTagName('head')[0];
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = url;
+            script.onload = callback;
+            head.appendChild(script);
+          }
+
+          function init() {
+
+            loadScript('js/socket.io.js', function () {
+
+              var socket = io.connect("http://191.236.103.192:80");
+
+              document.getElementById('log').innerHTML = "connecting";
+
+              socket.on('ping', function (data) {
+                document.getElementById('log').innerHTML = data.message;
+                socket.emit('pong', { message: 'Hello from client!' });
+              });
+
+              socket.on('connect', function () {
+                 document.getElementById('log').innerHTML = "connected";
+              });
+
+              socket.on('reconnect', function () {
+                document.getElementById('log').innerHTML = "reconnected";
+              });
+
+              socket.on('disconnect', function () {
+                document.getElementById('log').innerHTML = "disconnected";
+              });
+
+              socket.on('reconnecting', function () {
+                document.getElementById('log').innerHTML = "reconnecting...";
+              });
+
+              socket.on('error', function () {
+                document.getElementById('log').innerHTML = "error";
+              });
+            socket.on('newMessage', function(data) {
+                console.log('fishon', data);
+                var newChat = data.data;
+                $scope.chats[newChat._id] = newChat;
+                $scope.getAvatars();
+            });
+            });
+          }
+          init();
+
+
         $scope.refreshChats = function(){
+          alert('hello pull chats');
           socket.emit('hello');
         }
 
         $scope.pullChats = function (){
-          alert('hello pull chats');
           $scope.refreshChats();
           $scope.fetchChats();
         }
@@ -43,12 +95,6 @@ angular.module('sideMenuApp.controllers', [])
           socket.emit('fetch', chat)
         } 
 
-        socket.on('newMessage', function(data) {
-            // console.log('fishon', data);
-            var newChat = data.data;
-            $scope.chats[newChat._id] = newChat;
-            $scope.getAvatars();
-        });
 
         $scope.sendChat = function(chat) {
             if (!isChatValid(chat)) {
