@@ -12,7 +12,7 @@ angular.module('sideMenuApp.controllers', [])
     })
 
     .controller('OneController', function ($scope, socket) {
-        $scope.navTitle = "Page One Title";
+        $scope.navTitle = "blackbox";
 
         $scope.leftButtons = [{
             type: 'button-icon icon ion-navicon',

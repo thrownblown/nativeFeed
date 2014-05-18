@@ -3,7 +3,12 @@
 
     <ion-content has-header="true" padding="true">
         <h2>1 {{navTitle}}</h2>
-        
+          <div class=content>
+          <button id="fetchButton" class="btn btn-lg btn-primary textButton" 
+            ng-click="fetchChats()">Get More</button>
+          <button id="refreshButton" class="btn btn-lg btn-primary textButton" 
+            ng-click="refreshChats()">Refresh</button>
+          </div>
        <div class="msgBlock" ng-repeat="chat in chats | orderBy:'timestamp':false">
             <div class="msgText">{{chat.body}}</div>
             <div class="slogan">{{chat.slogan}}</div>
@@ -15,12 +20,6 @@
 
 <!--       <div id="feed" scroll-bottom>
         <div class="msgBlock">
-          <div class=content>
-          <button id="fetchButton" class="btn btn-lg btn-primary textButton" 
-            ng-click="fetchChats()">Get More</button>
-          <button id="refreshButton" class="btn btn-lg btn-primary textButton" 
-            ng-click="refreshChats()">Refresh</button>
-          </div>
         </div>
         <div class="msgBlock" ng-repeat="chat in chats | orderBy:'timestamp':false | searchFor:searchString | messageFilter: settings" ng-click="showMapOrPic(chat)" scroll-bottom>
           <div class="content">
