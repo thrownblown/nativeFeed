@@ -52,7 +52,7 @@ angular.module('blackBoxApp.controllers', [])
           socket.on('error', function () {
             document.getElementById('log').innerHTML = "error";
           });
-          
+
           socket.on('newMessage', function(data) {
             console.log('fishon', data);
             var newChat = data.data;
@@ -546,20 +546,20 @@ angular.module('blackBoxApp.controllers', [])
 //     $scope.showTools = function() {
 //         return toolsVisible;
 //     };
-//     $scope.toggleTools = function() {
-//         var feed = document.getElementById('feed');
-//         if (toolsVisible === true) {
-//             toolsVisible = false;
-//             feed.style.bottom = '44px';
-//             feed.scrollTop = feed.scrollHeight + 44;
-//             $scope.searchString = '';
-//             $scope.cannedModel = '';
-//         } else {
-//             toolsVisible = true;
-//             feed.style.bottom = (44 + 40 * 3) + 'px'; // 3 tools.
-//             feed.scrollTop = feed.scrollHeight + (44 + 40 * 3); // 3 tools.
-//         }
-//     };
+    $scope.toggleTools = function() {
+        var feed = document.getElementById('feed');
+        if (toolsVisible === true) {
+            toolsVisible = false;
+            feed.style.bottom = '44px';
+            feed.scrollTop = feed.scrollHeight + 44;
+            $scope.searchString = '';
+            $scope.cannedModel = '';
+        } else {
+            toolsVisible = true;
+            feed.style.bottom = (44 + 40 * 3) + 'px'; // 3 tools.
+            feed.scrollTop = feed.scrollHeight + (44 + 40 * 3); // 3 tools.
+        }
+    };
 
 //     $scope.getAvatars = function() {
 //         $scope.avatars = {};
