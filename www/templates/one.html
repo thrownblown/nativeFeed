@@ -4,16 +4,24 @@
     <ion-content has-header="true" padding="true">
         <div id="log">waiting...</div>
         <h2>1 {{navTitle}}</h2>
-          <div class=content>
-          <button id="fetchButton" class="btn btn-lg btn-primary textButton" 
-            ng-click="fetchChats()">Get More</button>
-          <button id="refreshButton" class="btn btn-lg btn-primary textButton" 
-            ng-click="refreshChats()">Refresh</button>
-          </div>
-       <div class="msgBlock" ng-repeat="chat in chats | orderBy:'timestamp':false">
+
+
+
+        <div class="msgBlock" ng-repeat="chat in chats | orderBy:'timestamp':true">
+          <div class="content">
+            <div class="author">
+             <img class="avatar" ng-src="{{chat.pic}}"/>
+            </div>
+            <div class="time"> 
+<!--               <div am-time-ago="chat.timestamp"></div>
+ -->              <span class="handle">{{chat.user || 'guest'}}</span>
+            </div>
             <div class="msgText">{{chat.body}}</div>
             <div class="slogan">{{chat.slogan}}</div>
-         </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
              <div id="footer">
         <div class="content">
