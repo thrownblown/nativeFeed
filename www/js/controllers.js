@@ -1,4 +1,4 @@
-angular.module('sideMenuApp.controllers', [])
+angular.module('blackBoxApp.controllers', [])
 
     .controller('MenuController', function ($scope, $location, MenuService) {
         // "MenuService" is a service returning mock data (services.js)
@@ -34,22 +34,22 @@ angular.module('sideMenuApp.controllers', [])
         pic: './images/Alfred_E_Neuman.jpg'
       }
     };
-        function loadScript(url, callback) {
-            var head = document.getElementsByTagName('head')[0];
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = url;
-            script.onload = callback;
-            head.appendChild(script);
-          }
+        // function loadScript(url, callback) {
+        //     var head = document.getElementsByTagName('head')[0];
+        //     var script = document.createElement('script');
+        //     script.type = 'text/javascript';
+        //     script.src = url;
+        //     script.onload = callback;
+        //     head.appendChild(script);
+        //   }
 
-          function init() {
+        //   function init() {
 
-            loadScript('js/socket.io.js', function () {
+        //     loadScript('js/socket.io.js', function () {
 
-              var socket = io.connect("http://191.236.103.192:80");
+        //       var socket = io.connect("http://191.236.103.192:80");
 
-              document.getElementById('log').innerHTML = "connecting";
+        //       document.getElementById('log').innerHTML = "connecting";
 
               socket.on('ping', function (data) {
                 document.getElementById('log').innerHTML = data.message;
@@ -82,9 +82,14 @@ angular.module('sideMenuApp.controllers', [])
                 var newChat = data.data;
                 $scope.chats[newChat._id] = newChat;
               });
-            });
-          }
-          init();
+        //     });
+        //   }
+          
+        socket.on('init', function(data) {
+            console.log('Socket connection established.');
+        });
+
+        //   init();
 
 
         $scope.refreshChats = function(){

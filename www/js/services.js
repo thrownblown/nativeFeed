@@ -1,4 +1,4 @@
-var app = angular.module('sideMenuApp.services', []);
+var app = angular.module('blackBoxApp.services', []);
 
 /**
  * A simple example service that returns some data.
@@ -19,8 +19,25 @@ app.factory('MenuService', function() {
 });
 // var app = angular.module('feedApp');
 
-app.factory('socket', function($rootScope) { 
-    var socket = io.connect();
+app.factory('socket', function($rootScope) {
+
+  function loadScript(url, callback) {
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    script.onload = callback;
+    head.appendChild(script);
+  }
+  function init() {
+    loadScript('js/socket.io.js', function (socket) {  
+    })
+  }
+  init();
+  var socket = io.connect("http://191.236.103.192:80");
+
+
+
     return {
         on: function(eventName, callback) {
             socket.on(eventName, function() {

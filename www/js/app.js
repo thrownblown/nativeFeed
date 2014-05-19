@@ -1,10 +1,10 @@
-var sideMenuApp = angular.module('sideMenuApp', ['ionic', 'sideMenuApp.controllers', 'sideMenuApp.services']);
+var blackBoxApp = angular.module('blackBoxApp', ['ionic', 'blackBoxApp.controllers', 'blackBoxApp.services']);
 
-sideMenuApp.config(function ($compileProvider) {
+blackBoxApp.config(function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 })
 
-sideMenuApp.config(['$stateProvider', '$urlRouterProvider',
+blackBoxApp.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
