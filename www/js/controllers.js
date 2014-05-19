@@ -24,73 +24,45 @@ angular.module('blackBoxApp.controllers', [])
         $scope.rightButtons = [];
 
 
-    $scope.chats = {
-      999999999999999999999999: {
-        _id: '999999999999999999999999',
-        timestamp: '2112-12-31T23:59:59.361Z',
-        body: 'Godspeed You! Black Emperor',
-        user: 'Mitsuo_Yanagimachi',
-        image: './images/Alfred_E_Neuman.jpg',
-        pic: './images/Alfred_E_Neuman.jpg'
-      }
-    };
-        // function loadScript(url, callback) {
-        //     var head = document.getElementsByTagName('head')[0];
-        //     var script = document.createElement('script');
-        //     script.type = 'text/javascript';
-        //     script.src = url;
-        //     script.onload = callback;
-        //     head.appendChild(script);
-        //   }
+    $scope.chats = {}; 
 
-        //   function init() {
+          socket.on('ping', function (data) {
+            document.getElementById('log').innerHTML = data.message;
+            socket.emit('pong', { message: 'Hello from client!' });
+            socket.emit('hello');
+          });
 
-        //     loadScript('js/socket.io.js', function () {
+          socket.on('connect', function () {
+             socket.emit('hello');
+             document.getElementById('log').innerHTML = "connected";
+          });
 
-        //       var socket = io.connect("http://191.236.103.192:80");
+          socket.on('reconnect', function () {
+            document.getElementById('log').innerHTML = "reconnected";
+          });
 
-        //       document.getElementById('log').innerHTML = "connecting";
+          socket.on('disconnect', function () {
+            document.getElementById('log').innerHTML = "disconnected";
+          });
 
-              socket.on('ping', function (data) {
-                document.getElementById('log').innerHTML = data.message;
-                socket.emit('pong', { message: 'Hello from client!' });
-                socket.emit('hello');
-              });
+          socket.on('reconnecting', function () {
+            document.getElementById('log').innerHTML = "reconnecting...";
+          });
 
-              socket.on('connect', function () {
-                 socket.emit('hello');
-                 document.getElementById('log').innerHTML = "connected";
-              });
+          socket.on('error', function () {
+            document.getElementById('log').innerHTML = "error";
+          });
+          
+          socket.on('newMessage', function(data) {
+            console.log('fishon', data);
+            var newChat = data.data;
+            $scope.chats[newChat._id] = newChat;
+          });
 
-              socket.on('reconnect', function () {
-                document.getElementById('log').innerHTML = "reconnected";
-              });
-
-              socket.on('disconnect', function () {
-                document.getElementById('log').innerHTML = "disconnected";
-              });
-
-              socket.on('reconnecting', function () {
-                document.getElementById('log').innerHTML = "reconnecting...";
-              });
-
-              socket.on('error', function () {
-                document.getElementById('log').innerHTML = "error";
-              });
-              socket.on('newMessage', function(data) {
-                console.log('fishon', data);
-                var newChat = data.data;
-                $scope.chats[newChat._id] = newChat;
-              });
-        //     });
-        //   }
           
         socket.on('init', function(data) {
             console.log('Socket connection established.');
         });
-
-        //   init();
-
 
         $scope.refreshChats = function(){
           alert('hello pull chats');
@@ -122,7 +94,7 @@ angular.module('blackBoxApp.controllers', [])
                 image: '',
                 type: 200
             });
-            // resetChatForm(chat);
+            resetChatForm(chat);
         }
 
         $scope.refreshChats();
