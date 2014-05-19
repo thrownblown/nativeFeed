@@ -23,8 +23,17 @@ angular.module('sideMenuApp.controllers', [])
 
         $scope.rightButtons = [];
 
-        $scope.chats = {};
 
+    $scope.chats = {
+      999999999999999999999999: {
+        _id: '999999999999999999999999',
+        timestamp: '2112-12-31T23:59:59.361Z',
+        body: 'Godspeed You! Black Emperor',
+        user: 'Mitsuo_Yanagimachi',
+        image: './images/Alfred_E_Neuman.jpg',
+        pic: './images/Alfred_E_Neuman.jpg'
+      }
+    };
         function loadScript(url, callback) {
             var head = document.getElementsByTagName('head')[0];
             var script = document.createElement('script');
