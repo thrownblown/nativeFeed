@@ -54,9 +54,11 @@ angular.module('sideMenuApp.controllers', [])
               socket.on('ping', function (data) {
                 document.getElementById('log').innerHTML = data.message;
                 socket.emit('pong', { message: 'Hello from client!' });
+                socket.emit('hello');
               });
 
               socket.on('connect', function () {
+                 socket.emit('hello');
                  document.getElementById('log').innerHTML = "connected";
               });
 
@@ -75,12 +77,11 @@ angular.module('sideMenuApp.controllers', [])
               socket.on('error', function () {
                 document.getElementById('log').innerHTML = "error";
               });
-            socket.on('newMessage', function(data) {
+              socket.on('newMessage', function(data) {
                 console.log('fishon', data);
                 var newChat = data.data;
                 $scope.chats[newChat._id] = newChat;
-                $scope.getAvatars();
-            });
+              });
             });
           }
           init();
@@ -111,7 +112,7 @@ angular.module('sideMenuApp.controllers', [])
                 return;
             }
             socket.emit('newChat', {
-                user: $scope.user.name,
+                // user: $scope.user.name,
                 body: chat.body,
                 image: '',
                 type: 200
@@ -120,33 +121,6 @@ angular.module('sideMenuApp.controllers', [])
         }
 
         $scope.refreshChats();
-    })
-
-    .controller('TwoController', function ($scope) {
-        $scope.navTitle = "Page Two Title";
-
-        $scope.leftButtons = [{
-            type: 'button-icon icon ion-navicon',
-            tap: function(e) {
-                $scope.sideMenuController.toggleLeft();
-            }
-        }];
-
-        $scope.rightButtons = [];
-    })
-
-    .controller('ThreeController', function ($scope) {
-        $scope.navTitle = "Page Three Title";
-
-        $scope.leftButtons = [{
-            type: 'button-icon icon ion-navicon',
-            tap: function(e) {
-                $scope.sideMenuController.toggleLeft();
-            }
-        }];
-
-        $scope.rightButtons = [];
-    });
 
 
 
@@ -624,18 +598,18 @@ angular.module('sideMenuApp.controllers', [])
 //         })
 //     };
 
-//     var isChatValid = function(chat) {
-//         if (chat.body === undefined || chat.body.length > 140) {
-//             return false;
-//         } else {
-//             return true;
-//         }
-//     };
+    var isChatValid = function(chat) {
+        if (chat.body === undefined || chat.body.length > 140) {
+            return false;
+        } else {
+            return true;
+        }
+    };
 
-//     var resetChatForm = function(chat) {
-//         $scope.cannedModel = '';
-//         chat.body = undefined;
-//     };
+    var resetChatForm = function(chat) {
+        $scope.cannedModel = '';
+        chat.body = undefined;
+    };
 
 //     $scope.getUsername = function() {
 //         $http.get('/api/users/me').success(function(user) {
@@ -719,6 +693,33 @@ angular.module('sideMenuApp.controllers', [])
 //             }
 //         }
 //     };
+    })
+
+    .controller('TwoController', function ($scope) {
+        $scope.navTitle = "Page Two Title";
+
+        $scope.leftButtons = [{
+            type: 'button-icon icon ion-navicon',
+            tap: function(e) {
+                $scope.sideMenuController.toggleLeft();
+            }
+        }];
+
+        $scope.rightButtons = [];
+    })
+
+    .controller('ThreeController', function ($scope) {
+        $scope.navTitle = "Page Three Title";
+
+        $scope.leftButtons = [{
+            type: 'button-icon icon ion-navicon',
+            tap: function(e) {
+                $scope.sideMenuController.toggleLeft();
+            }
+        }];
+
+        $scope.rightButtons = [];
+    });
 // });
 
 // app.filter('searchFor', function() {

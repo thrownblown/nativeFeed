@@ -14,6 +14,40 @@
             <div class="msgText">{{chat.body}}</div>
             <div class="slogan">{{chat.slogan}}</div>
          </div>
+
+             <div id="footer">
+        <div class="content">
+          <div id="toolbox" ng-show="showTools()">
+            <div id="tools">
+              <div class="tool" id="searchTool">
+                <input type="text" class="textField" id="searchField" ng-model="searchString" placeholder="search" />
+              </div>
+              <div class="tool" id="cannedTool">
+                <button id="fetchButton" class="btn btn-lg btn-primary textButton" 
+                  ng-click="fetchChats()">Get More</button>
+                <button id="refreshButton" class="btn btn-lg btn-primary textButton" 
+                  ng-click="refreshChats()">Refresh</button>
+                <select id="cannedSelect" class="btn btn-lg btn-primary textButton" ng-model="cannedModel" ng-change="composeCanned(chat)" ng-disabled="140 <= chat.body.length"><span>Canned</span>
+                  <option></option>
+                  <option>10-4</option>
+                  <option>on my way</option>
+                  <option>need help</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <form id="chatForm" name="chat" ng-init="configureUserSettings()" ng-submit="sendChat(chat)">
+            <div id="bottomRow">
+              <!-- <button type="button" class="button" id="toolsButton" ng-click="toggleTools()">tools</button> -->
+              <button type="button" id="toolsButton" ng-click="toggleTools()"><i class="fa fa-wrench"></i></button>
+              <input type="text" placeholder="compose" id="composeField" class="form-control textField" ng-model="chat.body" char-limit="140" />
+              <button type="submit" id="sendButton"><i class="fa fa-envelope"></i></button>
+            </div>
+          </form>
+        </div>        
+      </div>
+    </div>
+
     </ion-content>
 
 </ion-view>
