@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tcbcourier.blackbox" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>blackbox</name>
     <description>
         yammer for bike messengers
     </description>
-    <author email="alex@tcbcourier.com" href="http://tcbcourier.com">
-        TCB Courier & OrderNear
+    <author email="alex@tcbcourier.com" href="http://www.tcbcourier.com">
+        TCB Courier OrderNear
     </author>
     <content src="index.html" />
     <access origin="*" />
