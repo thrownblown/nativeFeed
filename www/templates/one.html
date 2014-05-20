@@ -8,17 +8,19 @@
                      refreshing-icon="ion-loading-c">
                      
       </ion-refresher>
-        <div class="msgBlock" ng-repeat="chat in chats | orderBy:'timestamp'">
+      <ion-list>
+        <ion-item ng-repeat="chat in chats | orderBy:'timestamp':true">
           <div class="author">
            <img class="avatar" ng-src="{{chat.pic}}"/>
           </div>
           <div class="time"> 
-<!--        <div am-time-ago="chat.timestamp"></div>
--->         <span class="handle">{{chat.user || 'guest'}}</span>
+            <div am-time-ago="chat.timestamp"></div>
+            <span class="handle">{{chat.user || 'guest'}}</span>
           </div>
           <div class="msgText">{{chat.body}}</div>
           <div class="slogan">{{chat.slogan}}</div>
-        </div>
+        </ion-item>
+      </ion-list>
         <div id="log">waiting...</div>
   </ion-content>
 
@@ -45,9 +47,11 @@
                 <button type="submit" id="sendButton" class="button button-submit">
                   Submit
                 </button>
- 
+              </div>
+              <div class="col">
                 <button id="fetchButton" class="button" ng-click="fetchChats()">More</button>
- 
+             </div>
+             <div class="col">
                 <button id="refreshButton" class="button" ng-click="refreshChats()">Frresh</button>
               </div>
             </div>

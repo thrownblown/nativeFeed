@@ -11,7 +11,7 @@ angular.module('blackBoxApp.controllers', [])
         };
     })
 
-    .controller('OneController', function ($scope, socket) {
+    .controller('OneController', function ($scope, socket, $timeout) {
         $scope.navTitle = "blackbox";
 
         $scope.leftButtons = [{
@@ -28,7 +28,37 @@ angular.module('blackBoxApp.controllers', [])
             }
         }];
 
-        $scope.chats = {}; 
+        // navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+
+
+        var onGeoSuccess = function(position) {
+            alert('Latitude: '          + position.coords.latitude          + '\n' +
+                  'Longitude: '         + position.coords.longitude         + '\n' +
+                  'Altitude: '          + position.coords.altitude          + '\n' +
+                  'Accuracy: '          + position.coords.accuracy          + '\n' +
+                  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                  'Heading: '           + position.coords.heading           + '\n' +
+                  'Speed: '             + position.coords.speed             + '\n' +
+                  'Timestamp: '         + position.timestamp                + '\n');
+        };
+
+        // onGeoError Callback receives a PositionError object
+        //
+        var onGeoError = function(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
+
+
+        $scope.chats = []; 
+        $scope.chatMem = {};
+        var chatList = function(obj){
+          var arr = [];
+          angular.forEach(obj, function(value, key){
+            arr.push(value);
+          });
+          return arr;
+        };
 
           socket.on('ping', function (data) {
             document.getElementById('log').innerHTML = data.message;
@@ -60,7 +90,9 @@ angular.module('blackBoxApp.controllers', [])
           socket.on('newMessage', function(data) {
             console.log('fishon', data);
             var newChat = data.data;
-            $scope.chats[newChat._id] = newChat;
+            $scope.chatMem[newChat._id] = newChat;
+            $scope.chats = chatList($scope.chatMem);
+
           });
           
         socket.on('init', function(data) {
@@ -72,20 +104,27 @@ angular.module('blackBoxApp.controllers', [])
           socket.emit('hello');
         }
 
-        $scope.pullChats = function (){
+        $scope.$parent.pullChats = function (){
           alert('hey hey pulling chats');
-          $scope.chats = {};
+          $scope.chats = [];
           $scope.refreshChats();
           $scope.fetchChats();
         }
-
+   
         $scope.doRefresh = function() {
+            console.log('Refreshing!');
           alert('hey hey pulling chats');
-          $scope.chats = {};
+          $scope.chats = [];
           $scope.refreshChats();
           $scope.fetchChats();
           $scope.$broadcast('scroll.refreshComplete');
+            $timeout( function() {
+               $scope.$broadcast('scroll.refreshComplete');  
+            }, 1000);
         };
+
+        // $scope.doRefresh = function() {
+        // };
 
         $scope.fetchChats = function() {
           var chatArr = $scope.chats;

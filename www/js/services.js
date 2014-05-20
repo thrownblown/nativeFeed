@@ -17,7 +17,6 @@ app.factory('MenuService', function() {
     }
   }
 });
-// var app = angular.module('feedApp');
 
 app.factory('socket', function($rootScope) {
 

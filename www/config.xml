@@ -10,7 +10,7 @@
     <content src="index.html" />
     <access origin="*" />
     <access origin="http://191.236.103.192:80" />
-    <preference name="fullscreen" value="true" />
+    <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

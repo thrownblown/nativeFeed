@@ -1,4 +1,8 @@
-var blackBoxApp = angular.module('blackBoxApp', ['ionic', 'blackBoxApp.controllers', 'blackBoxApp.services']);
+var blackBoxApp = angular.module('blackBoxApp', [
+    'ionic', 
+    'blackBoxApp.controllers', 
+    'blackBoxApp.services', 
+    'angularMoment']);
 
 blackBoxApp.config(function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);

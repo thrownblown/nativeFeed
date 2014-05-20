@@ -19,6 +19,8 @@
   border-style: solid;
   border-width: 1px;
   border-color: #ddd;
+  white-space: normal;
+  font-size: 14px;
 }
 .author {
   float: left;
@@ -39,7 +41,9 @@
 .msgText {
   margin-left: 38px;
   text-align: left;
-  width: 70%;
+  white-space: normal;
+  font-size: 14px; 
+  width: 80%;
 }
 .slogan {
   margin-left: 38px;
