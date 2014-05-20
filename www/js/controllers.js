@@ -77,6 +77,7 @@ angular.module('blackBoxApp.controllers', [])
           $scope.chats = {};
           $scope.refreshChats();
           $scope.fetchChats();
+          $scope.$broadcast('scroll.refreshComplete');
         }
 
         $scope.fetchChats = function() {

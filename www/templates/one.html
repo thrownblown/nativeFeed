@@ -2,10 +2,13 @@
       hide-back-button="true">
 
     <ion-content has-header="true" has-footer="true" padding="true">
-        <div id="log">waiting...</div>
-        <h2>1 {{navTitle}}</h2>
-
-        <div class="msgBlock" ng-repeat="chat in chats | orderBy:'chat._id':true">
+      <ion-refresher on-refresh="pullChats()"
+                     pulling-text="Pull to refresh..."
+                     refreshing-text="Refreshing!"
+                     refreshing-icon="ion-loading-c">
+                     
+      </ion-refresher>
+        <div class="msgBlock" ng-repeat="chat in chats | orderBy:'timestamp'">
           <div class="author">
            <img class="avatar" ng-src="{{chat.pic}}"/>
           </div>
@@ -16,6 +19,7 @@
           <div class="msgText">{{chat.body}}</div>
           <div class="slogan">{{chat.slogan}}</div>
         </div>
+        <div id="log">waiting...</div>
   </ion-content>
 
   <ion-footer-bar class="bar-dark">
@@ -41,11 +45,9 @@
                 <button type="submit" id="sendButton" class="button button-submit">
                   Submit
                 </button>
-              </div>
-              <div class="col">
+ 
                 <button id="fetchButton" class="button" ng-click="fetchChats()">More</button>
-              </div>
-              <div class="col">
+ 
                 <button id="refreshButton" class="button" ng-click="refreshChats()">Frresh</button>
               </div>
             </div>
