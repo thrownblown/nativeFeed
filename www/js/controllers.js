@@ -88,7 +88,7 @@ angular.module('blackBoxApp.controllers', [])
           });
 
           socket.on('newMessage', function(data) {
-            console.log('fishon', data);
+            // console.log('fishon', data);
             var newChat = data.data;
             $scope.chatMem[newChat._id] = newChat;
             $scope.chats = chatList($scope.chatMem);
