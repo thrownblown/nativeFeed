@@ -11,7 +11,7 @@ angular.module('blackBoxApp.controllers', [])
         };
     })
 
-    .controller('OneController', function ($scope, socket, $timeout) {
+    .controller('OneController', function ($scope, socket, $timeout, $window) {
         $scope.navTitle = "blackbox";
 
         $scope.leftButtons = [{
@@ -111,7 +111,7 @@ angular.module('blackBoxApp.controllers', [])
           $scope.fetchChats();
         }
    
-        $scope.doRefresh = function() {
+        $scope.fresh = function() {
             console.log('Refreshing!');
           alert('hey hey pulling chats');
           $scope.chats = [];
@@ -127,9 +127,9 @@ angular.module('blackBoxApp.controllers', [])
         // };
 
         $scope.fetchChats = function() {
-          var chatArr = $scope.chats;
-          chatArr = Object.keys(chatArr).sort();
-          var chat = $scope.chats[chatArr[0]];
+          // var chatArr = $scope.chats;
+          // chatArr = Object.keys(chatArr).sort();
+          var chat = $scope.chats[0];
           console.log(chatArr, chat);
           socket.emit('fetch', chat);
         } 
