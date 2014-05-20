@@ -132,6 +132,8 @@ angular.module('blackBoxApp.controllers', [])
           var chat = $scope.chats[0];
           console.log(chatArr, chat);
           socket.emit('fetch', chat);
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+
         } 
 
 
