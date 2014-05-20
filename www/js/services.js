@@ -6,7 +6,7 @@ var app = angular.module('blackBoxApp.services', []);
 app.factory('MenuService', function() {
 
   var menuItems = [
-      { text: '1 Page One', iconClass: 'icon ion-map', link: 'one'},
+      { text: 'Chats', iconClass: 'icon ion-ios7-bolt', link: 'chats'},
       { text: '2 Page Two', iconClass: 'icon ion-gear-b', link: 'two'},
       { text: '3 Page Three', iconClass: 'icon ion-star', link: 'three'}
   ];

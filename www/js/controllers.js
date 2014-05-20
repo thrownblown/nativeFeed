@@ -21,10 +21,14 @@ angular.module('blackBoxApp.controllers', [])
             }
         }];
 
-        $scope.rightButtons = [];
+        $scope.rightButtons = [{
+            type: 'button-icon icon ion-navicon',
+            tap: function(e) {
+                $scope.sideMenuController.toggleRiht();
+            }
+        }];
 
-
-    $scope.chats = {}; 
+        $scope.chats = {}; 
 
           socket.on('ping', function (data) {
             document.getElementById('log').innerHTML = data.message;
@@ -58,18 +62,18 @@ angular.module('blackBoxApp.controllers', [])
             var newChat = data.data;
             $scope.chats[newChat._id] = newChat;
           });
-
           
         socket.on('init', function(data) {
             console.log('Socket connection established.');
         });
 
         $scope.refreshChats = function(){
-          alert('hello pull chats');
+          alert('server connection are go!');
           socket.emit('hello');
         }
 
         $scope.pullChats = function (){
+          alert('hey hey pulling chats');
           $scope.refreshChats();
           $scope.fetchChats();
         }
@@ -79,7 +83,7 @@ angular.module('blackBoxApp.controllers', [])
           chatArr = Object.keys(chatArr).sort();
           var chat = $scope.chats[chatArr[0]];
           // console.log(chatArr, chat);
-          socket.emit('fetch', chat)
+          socket.emit('fetch', chat);
         } 
 
 
@@ -542,16 +546,16 @@ angular.module('blackBoxApp.controllers', [])
 //         });
 //         resetChatForm(chat);
 //     }
-//     var toolsVisible = false;
-//     $scope.showTools = function() {
-//         return toolsVisible;
-//     };
+    var toolsVisible = false;
+    $scope.showTools = function() {
+        return toolsVisible;
+    };
     $scope.toggleTools = function() {
         var feed = document.getElementById('feed');
         if (toolsVisible === true) {
             toolsVisible = false;
-            feed.style.bottom = '44px';
-            feed.scrollTop = feed.scrollHeight + 44;
+            // feed.style.bottom = '44px';
+            // feed.scrollTop = feed.scrollHeight + 44;
             $scope.searchString = '';
             $scope.cannedModel = '';
         } else {

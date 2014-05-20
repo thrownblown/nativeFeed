@@ -6,26 +6,60 @@
         <h2>1 {{navTitle}}</h2>
 
 
+        <div class"msgBlock">
+          <button id="fetchButton" class="btn btn-lg btn-primary textButton" 
+            ng-click="fetchChats()">Get More</button>
+          <button id="refreshButton" class="btn btn-lg btn-primary textButton" 
+            ng-click="refreshChats()">Refresh</button>
+        </div>
 
         <div class="msgBlock" ng-repeat="chat in chats | orderBy:'timestamp':false">
-          <div class="content">
-            <div class="author">
-             <img class="avatar" ng-src="{{chat.pic}}"/>
-            </div>
-            <div class="time"> 
-<!--               <div am-time-ago="chat.timestamp"></div>
- -->              <span class="handle">{{chat.user || 'guest'}}</span>
-            </div>
-            <div class="msgText">{{chat.body}}</div>
-            <div class="slogan">{{chat.slogan}}</div>
+          <div class="author">
+           <img class="avatar" ng-src="{{chat.pic}}"/>
           </div>
+          <div class="time"> 
+<!--        <div am-time-ago="chat.timestamp"></div>
+-->         <span class="handle">{{chat.user || 'guest'}}</span>
+          </div>
+          <div class="msgText">{{chat.body}}</div>
+          <div class="slogan">{{chat.slogan}}</div>
+        </div>
+        <div class"msgBlock">Hey I'm down here!
+          <br>
+        </div>        
+        <div class"msgBlock">Hey I'm down here!
+          <br>
+        </div>        
+        <div class"msgBlock">Hey I'm down here!
+          <br>
+        </div>
+  </ion-content>
+
+  <ion-footer-bar align-title="left" class="bar-dark">
+    <!--   <div class="buttons">
+        <button class="button">Left Button</button>
+      </div>
+      <h1 class="title">Title!</h1>
+      <div class="buttons" ng-click="doSomething()">
+        <button class="button">Right Button</button>
+      </div> -->
+    <div class="bar bar-footer item-input-inset">
+      <form id="chatForm" name="chat" ng-init="configureUserSettings()" ng-submit="sendChat(chat)">
+       <div class="row">
+        <div class="col col-75">
+         <label class="item-input-wrapper">
+            <i class="icon ion-ios7-search placeholder-icon"></i>
+          <input type="text" placeholder="compose" id="composeField" class="form-control textField" ng-model="chat.body" char-limit="140" />
+          </label>
+        </div>
+        <div class="col">
+          <button type="submit" id="sendButton" class="button button-submit">
+            Submit
+          </button>
         </div>
       </div>
-    </div>
-
-
-
-    </ion-content>
+    </form>
+    </ion-footer-bar>
 </ion-view>
 
 

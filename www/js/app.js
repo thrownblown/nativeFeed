@@ -12,8 +12,8 @@ blackBoxApp.config(['$stateProvider', '$urlRouterProvider',
     // Each state's controller can be found in controllers.js
     $stateProvider
 
-        .state('one', {
-            url: '/one',
+        .state('chat', {
+            url: '/chat',
             controller: 'OneController',
             templateUrl: 'templates/one.html'
         })
@@ -29,7 +29,7 @@ blackBoxApp.config(['$stateProvider', '$urlRouterProvider',
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/one');
+    $urlRouterProvider.otherwise('/chat');
     }
 ])
 
