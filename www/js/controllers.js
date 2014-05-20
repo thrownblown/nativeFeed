@@ -633,84 +633,86 @@ angular.module('blackBoxApp.controllers', [])
 //         });
 //     };
 
-//     $scope.layer;
-//     $scope.map;
-//     $scope.dropMarker;
-//     $scope.pickMarker;
+    $scope.layer;
+    $scope.map;
+    $scope.dropMarker;
+    $scope.pickMarker;
 
-//     $scope.hideMap = true;
-//     $scope.createMap = function() {
-//         $scope.layer = new L.StamenTileLayer('toner');
-//         $scope.map = new L.Map('map', {
-//             center: new L.LatLng(37.7, - 122.4),
-//             zoom: 14
-//         });
-//         $scope.map.addLayer($scope.layer);
+    $scope.hideMap = true;
+    $scope.createMap = function() {
+        $scope.layer = new L.StamenTileLayer('toner');
+        $scope.map = new L.Map('map', {
+            center: new L.LatLng(37.7, - 122.4),
+            zoom: 14
+        });
+        $scope.map.addLayer($scope.layer);
 
-//         //drop Location
-//         var redMarker = L.AwesomeMarkers.icon({
-//             icon: 'bolt',
-//             prefix: 'fa',
-//             markerColor: 'red'
-//         });
+        //drop Location
+        var redMarker = L.AwesomeMarkers.icon({
+            icon: 'bolt',
+            prefix: 'fa',
+            markerColor: 'red'
+        });
 
-//         //pick Location
-//         var greenMarker = L.AwesomeMarkers.icon({
-//             icon: 'plane',
-//             prefix: 'fa',
-//             markerColor: 'green'
-//         });
+        //pick Location
+        var greenMarker = L.AwesomeMarkers.icon({
+            icon: 'plane',
+            prefix: 'fa',
+            markerColor: 'green'
+        });
 
-//         $scope.pickMarker = L.marker([37.8, - 120], {
-//             icon: greenMarker
-//         }).addTo($scope.map);
-//         $scope.dropMarker = L.marker([37.7, - 122.4], {
-//             icon: redMarker
-//         }).addTo($scope.map);
+        $scope.pickMarker = L.marker([37.8, - 120], {
+            icon: greenMarker
+        }).addTo($scope.map);
+        $scope.dropMarker = L.marker([37.7, - 122.4], {
+            icon: redMarker
+        }).addTo($scope.map);
 
-//         // $('#map').height($(window).height()); // jQ refactored to JS below.
-//         document.getElementById('map').style.height = window.innerHeight;
-//         $scope.map.invalidateSize();
-//     };
+        // $('#map').height($(window).height()); // jQ refactored to JS below.
+        document.getElementById('map').style.height = window.height;
+        $scope.map.invalidateSize();
+    };
 
-//     $scope.hidePic = true;
-//     $scope.createPic = function() {
-//         // $('#pic').height($(window).height()); // jQuery refactor to vanilla JS below.
-//         document.getElementById('pic').style.height = window.innerHeight;
-//     };
+    $scope.hidePic = true;
+    $scope.createPic = function() {
+        // $('#pic').height($(window).height()); // jQuery refactor to vanilla JS below.
+        document.getElementById('pic').style.height = window.height;
+    };
 
-//     $scope.showMapOrPic = function(chat) {
-//         // console.log(chat);
-//         if (chat.image || chat.dropCoordinates){
-//             if (chat.image !== undefined) {
-//                 var pic = document.getElementById('pic');
-//                 pic.style.backgroundImage = 'url(' + chat.image + ')';
-//                 pic.style.backgroundRepeat = 'no-repeat';
-//                 pic.style.backgroundPosition = 'center center';
-//                 $scope.hidePic = false;
-//             } else if (chat.pickCoordinates !== undefined || chat.dropCoordinates !== undefined) {
-//                 var pickLat = JSON.parse(chat.pickCoordinates).lat;
-//                 var pickLng = JSON.parse(chat.pickCoordinates).lng;
-//                 var dropLat = JSON.parse(chat.dropCoordinates).lat;
-//                 var dropLng = JSON.parse(chat.dropCoordinates).lng;
-//                 //pan-center map to the mid-point btw pick & drop
-//                 var panLat = (pickLat + dropLat)/2;
-//                 var panLng = (pickLng + dropLng)/2;
-//                 $scope.dropMarker.setLatLng([dropLat, dropLng]);
-//                 if ((pickLat === dropLat) && (pickLng === dropLng)) {
-//                     $scope.pickMarker.setLatLng([0, 0]);
-//                 } else {
-//                     $scope.pickMarker.setLatLng([pickLat, pickLng]);
-//                 }
-//                 $scope.hideMap = false;
-//                 $scope.map.panTo(new L.LatLng(panLat, panLng), {animate: true, duration: 0.5, easeLinearity: 0.25});
-//             }
-//         }
-//     };
+    $scope.showMapOrPic = function(chat) {
+        console.log('show map or pic ', chat);
+        if (chat.image || chat.dropCoordinates){
+            if (chat.image !== undefined) {
+                var pic = document.getElementById('pic');
+                pic.style.backgroundImage = 'url(' + chat.image + ')';
+                pic.style.backgroundRepeat = 'no-repeat';
+                pic.style.backgroundPosition = 'center center';
+                $scope.hidePic = false;
+            } else if (chat.pickCoordinates !== undefined || chat.dropCoordinates !== undefined) {
+                var pickLat = JSON.parse(chat.pickCoordinates).lat;
+                var pickLng = JSON.parse(chat.pickCoordinates).lng;
+                var dropLat = JSON.parse(chat.dropCoordinates).lat;
+                var dropLng = JSON.parse(chat.dropCoordinates).lng;
+                //pan-center map to the mid-point btw pick & drop
+                var panLat = (pickLat + dropLat)/2;
+                var panLng = (pickLng + dropLng)/2;
+                $scope.dropMarker.setLatLng([dropLat, dropLng]);
+                if ((pickLat === dropLat) && (pickLng === dropLng)) {
+                    $scope.pickMarker.setLatLng([0, 0]);
+                } else {
+                    $scope.pickMarker.setLatLng([pickLat, pickLng]);
+                }
+                $scope.hideMap = false;
+                $scope.map.panTo(new L.LatLng(panLat, panLng), {animate: true, duration: 0.5, easeLinearity: 0.25});
+            }
+        }
+    };
     })
 
-    .controller('TwoController', function ($scope) {
-        $scope.navTitle = "Page Two Title";
+    
+    .controller('TwoController', function ($scope, PetService) {
+    // .controller('TwoController', function ($scope) {
+        $scope.navTitle = "Map";
 
         $scope.leftButtons = [{
             type: 'button-icon icon ion-navicon',
@@ -720,7 +722,32 @@ angular.module('blackBoxApp.controllers', [])
         }];
 
         $scope.rightButtons = [];
+        $scope.map = {
+            defaults: {
+                tileLayer: "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                maxZoom: 14,
+                zoomControlPosition: 'bottomleft',
+                path: {
+                    weight: 10,
+                    color: '#800000',
+                    opacity: 1
+                }
+            },
+            center: {
+                lat: 44.52,
+                lng: -122.68,
+                zoom: 5
+            }
+        };
     })
+
+
+    // A simple controller that shows a tapped item's data
+    .controller('PetDetailCtrl', function($scope, $stateParams, PetService) {
+      // "Pets" is a service returning mock data (services.js)
+      $scope.pet = PetService.get($stateParams.petId);
+    })
+
 
     .controller('ThreeController', function ($scope) {
         $scope.navTitle = "Page Three Title";

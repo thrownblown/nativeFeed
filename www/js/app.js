@@ -2,6 +2,7 @@ var blackBoxApp = angular.module('blackBoxApp', [
     'ionic', 
     'blackBoxApp.controllers', 
     'blackBoxApp.services', 
+    'leaflet-directive',
     'angularMoment']);
 
 blackBoxApp.config(function ($compileProvider) {

@@ -1,27 +1,27 @@
 <ion-view title="navTitle" hide-back-button="true" left-buttons="leftButtons" right-buttons="rightButtons"
       hide-back-button="true">
-
-    <ion-content has-header="true" has-footer="true" padding="true">
-      <ion-refresher on-refresh="doRefresh()"
-                     pulling-text="Pull to refresh..."
-                     refreshing-text="Refreshing!"
-                     refreshing-icon="ion-loading-c">
-                     
-      </ion-refresher>
-      <ion-list>
-        <ion-item ng-repeat="chat in chats | orderBy:'timestamp':true">
-          <div class="author">
-           <img class="avatar" ng-src="{{chat.pic}}"/>
-          </div>
-          <div class="time"> 
-            <div am-time-ago="chat.timestamp"></div>
-            <span class="handle">{{chat.user || 'guest'}}</span>
-          </div>
-          <div class="msgText">{{chat.body}}</div>
-          <div class="slogan">{{chat.slogan}}</div>
-        </ion-item>
-      </ion-list>
-        <div id="log">waiting...</div>
+<div id="map" ng-init="createMap()" ng-hide="hideMap" ng-click="hideMap = !hideMap"></div>
+<div id="pic" ng-init="createPic()" ng-hide="hidePic" ng-click="hidePic = !hidePic"></div>
+  <ion-content has-header="true" has-footer="true" padding="true">
+    <ion-refresher on-refresh="doRefresh()"
+                   pulling-text="Pull to refresh..."
+                   refreshing-text="Refreshing!"
+                   refreshing-icon="ion-loading-c">                     
+    </ion-refresher>
+    <ion-list>
+      <ion-item ng-repeat="chat in chats | orderBy:'timestamp':true" ng-click="showMapOrPic(chat)">
+        <div class="author">
+         <img class="avatar" ng-src="{{chat.pic}}"/>
+        </div>
+        <div class="time"> 
+          <div am-time-ago="chat.timestamp"></div>
+          <span class="handle">{{chat.user || 'guest'}}</span>
+        </div>
+        <div class="msgText">{{chat.body}}</div>
+        <div class="slogan">{{chat.slogan}}</div>
+      </ion-item>
+    </ion-list>
+    <div id="log">waiting...</div>
   </ion-content>
 
   <ion-footer-bar class="bar-dark">
@@ -32,7 +32,7 @@
       <div class="buttons" ng-click="doSomething()">
         <button class="button">Right Button</button>
       </div> -->
-    <div class="bar-footer">
+    <!-- <div class="bar-footer"> -->
       <div class="list">
         <div class="item-input-inset">
           <form id="chatForm" name="chat" ng-init="configureUserSettings()" ng-submit="sendChat(chat)">
@@ -58,7 +58,7 @@
           </form>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
 
   </ion-footer-bar>
 </ion-view>
