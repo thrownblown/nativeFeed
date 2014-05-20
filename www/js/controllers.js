@@ -74,6 +74,7 @@ angular.module('blackBoxApp.controllers', [])
 
         $scope.pullChats = function (){
           alert('hey hey pulling chats');
+          $scope.chats = {};
           $scope.refreshChats();
           $scope.fetchChats();
         }
@@ -153,21 +154,6 @@ angular.module('blackBoxApp.controllers', [])
 //     };
 // }]);
 
-// app.directive('scrollBottom', function($window) { // MOVE DIRECTIVES TO A SEPARATE FILE?
-//     var scrollBottomWrap = function() {
-//         var scrollToBottom = function() {
-//             var feed = document.getElementById('feed');
-//             feed.scrollTop = feed.scrollHeight + 44;
-//         };
-//         scrollToBottom();
-//         $window.addEventListener('resize', function() {
-//             scrollToBottom();
-//         });
-//     };
-//     return {
-//         link: scrollBottomWrap
-//     };
-// });
 
 // var feedbackPerLength = function(length) {
 //     var composeField = document.getElementById('composeField');
