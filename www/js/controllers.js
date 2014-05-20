@@ -77,14 +77,21 @@ angular.module('blackBoxApp.controllers', [])
           $scope.chats = {};
           $scope.refreshChats();
           $scope.fetchChats();
-          $scope.$broadcast('scroll.refreshComplete');
         }
+
+        $scope.doRefresh = function() {
+          alert('hey hey pulling chats');
+          $scope.chats = {};
+          $scope.refreshChats();
+          $scope.fetchChats();
+          $scope.$broadcast('scroll.refreshComplete');
+        };
 
         $scope.fetchChats = function() {
           var chatArr = $scope.chats;
           chatArr = Object.keys(chatArr).sort();
           var chat = $scope.chats[chatArr[0]];
-          // console.log(chatArr, chat);
+          console.log(chatArr, chat);
           socket.emit('fetch', chat);
         } 
 
