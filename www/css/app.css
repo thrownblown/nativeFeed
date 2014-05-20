@@ -40,11 +40,12 @@
 }
 .msgText {
   margin-left: 38px;
+  margin-right: 96px;
   text-align: left;
   white-space: normal;
-  font-size: 14px; 
-  width: 80%;
-}
+  font-size: 16px; 
+/*  width: 80%;
+*/}
 .slogan {
   margin-left: 38px;
   text-align: left;
