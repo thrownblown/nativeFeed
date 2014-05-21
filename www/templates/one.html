@@ -31,16 +31,16 @@
 
   <ion-footer-bar class="bar-dark">
       <div class="list">
-        <div class="item-input-inset">
+        <div class="item-input-inset" id="compose">
           <form id="chatForm" name="chat" ng-init="configureUserSettings()" ng-submit="sendChat(chat)">
             <div class="row">
               <div class="col col-75">
-               <label class="item-input-wrapper">
+               <label class="item-input-wrapper" id="compose">
                   <i class="icon ion-ios7-bolt placeholder-icon"></i>
                 <input type="text" placeholder="compose" id="composeField" class="form-control textField" ng-model="chat.body" char-limit="140" />
                 </label>
               </div>
-              <div class="col">
+              <div class="col col-25">
                 <button type="submit" id="sendButton" class="button button-submit">
                   Submit
                 </button>

@@ -81,3 +81,15 @@
   position: fixed;
   z-index: 100;
 }
+#compose {
+  padding-top: 0px;
+  min-height: 33px;
+  min-width: 250px;
+}
+#chatForm{
+  min-width: 200px
+}
+.row {
+  text-align: right;
+  width: 100%
+}

@@ -530,7 +530,7 @@ angular.module('blackBoxApp.controllers', [])
             }
         };
 
-        navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+        // navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
 
 
         var onGeoSuccess = function(position) {
