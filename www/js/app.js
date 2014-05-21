@@ -22,8 +22,8 @@ blackBoxApp.config(['$stateProvider', '$urlRouterProvider',
             controller: 'OneController',
             templateUrl: 'templates/one.html'
         })
-        .state('two', {
-            url: '/two',
+        .state('map', {
+            url: '/map',
             controller: 'TwoController',
             templateUrl: 'templates/two.html'
         })
@@ -39,65 +39,22 @@ blackBoxApp.config(['$stateProvider', '$urlRouterProvider',
 ])
 
 
-// 'use strict';
-
-// var app = angular.module('feedApp', [
-//   'ngCookies',
-//   'ngResource',
-//   'ngRoute',
-//   'ngSanitize',
-//   'ngTouch',
-//   // 'mgcrea.pullToRefresh',
-//   'angularMoment'
-// ])
-//   .config(function ($routeProvider, $locationProvider, $httpProvider) {
-//     $routeProvider
-//       .when('/', {
-//         templateUrl: 'partials/main',
-//         authenticate: true,
-//         controller: 'MainCtrl'
-//       })
-//       .when('/login', {
-//         templateUrl: 'partials/login',
-//         controller: 'LoginCtrl'
-//       })
-//       .when('/signup', {
-//         templateUrl: 'partials/signup',
-//         controller: 'SignupCtrl'
-//       })
-//       .when('/settings', {
-//         templateUrl: 'partials/settings',
-//         controller: 'SettingsCtrl',
-//         authenticate: true
-//       })
-//       .otherwise({
-//         redirectTo: '/'
-//       });
-      
-//     $locationProvider.html5Mode(true);
-      
-//     // Intercept 401s and redirect you to login
-//     $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
-//       return {
-//         'responseError': function(response) {
-//           if(response.status === 401) {
-//             $location.path('/login');
-//             return $q.reject(response);
-//           }
-//           else {
-//             return $q.reject(response);
-//           }
-//         }
-//       };
-//     }]);
-//   })
-//   .run(function ($rootScope, $location, $http, Auth) {
-//     // Redirect to login if route requires auth and you're not logged in
-//     $rootScope.$on('$routeChangeStart', function (event, next) {
-//       if (next.authenticate && !Auth.isLoggedIn()) {
-//         $location.path('/login');
-//       }
-//     });
-//   });
-
-
+blackBoxApp.directive('charLimit', function() { // MOVE DIRECTIVES TO A SEPARATE FILE?
+    return {
+        restrict: 'A',
+        link: function(scope, elem, attrs) {
+            var limit = attrs.charLimit;
+            elem.bind('keyup', function(event) {
+                var length = elem.val().length;
+                feedbackPerLength(length); // Color the field if text too long.
+            });
+            elem.bind('keypress', function(event) {
+                if (elem.val().length >= limit) {
+                    if (event.keyCode !== 8) { // Prevent non-backspace keypresses if length exceeds limit.
+                        event.preventDefault();
+                    }
+                }
+            });
+        }
+    };
+});

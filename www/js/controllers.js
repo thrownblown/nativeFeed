@@ -28,27 +28,6 @@ angular.module('blackBoxApp.controllers', [])
             }
         }];
 
-        // navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
-
-
-        var onGeoSuccess = function(position) {
-            alert('Latitude: '          + position.coords.latitude          + '\n' +
-                  'Longitude: '         + position.coords.longitude         + '\n' +
-                  'Altitude: '          + position.coords.altitude          + '\n' +
-                  'Accuracy: '          + position.coords.accuracy          + '\n' +
-                  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-                  'Heading: '           + position.coords.heading           + '\n' +
-                  'Speed: '             + position.coords.speed             + '\n' +
-                  'Timestamp: '         + position.timestamp                + '\n');
-        };
-
-        // onGeoError Callback receives a PositionError object
-        //
-        var onGeoError = function(error) {
-            alert('code: '    + error.code    + '\n' +
-                  'message: ' + error.message + '\n');
-        }
-
 
         $scope.chats = []; 
         $scope.chatMem = {};
@@ -401,16 +380,6 @@ angular.module('blackBoxApp.controllers', [])
 //         }
 //     };
 
-
-//     $scope.configureUserSettings = function() {
-//         $http.get('/api/users/me').success(function(user) {
-//             $scope.user = user || 'guest';
-//         }).error(function(data, status, headers, config) {
-//             console.log('GET error!', '\ndata:', data, '\nstatus:', status, '\nheaders:', headers, '\nconfig:', config);
-//         });
-//         $scope.getAvatars();
-//     };
-
 //     $scope.updateFilters = function() {
 //         console.log('change');
 //     };
@@ -421,166 +390,6 @@ angular.module('blackBoxApp.controllers', [])
 //         // console.log('show', this.show);
 //     };
 
-
-//     $scope.showPanelLeft = false;
-//     $scope.togglePanelLeft = function() {
-//         $scope.showPanelLeft = ($scope.showPanelLeft) ? false : true;
-//         if ($scope.user !== 'guest') {
-//             $http.post('/api/users/me', {
-//                 propertyKey: 'settings',
-//                 propertyValue: $scope.settings,
-//                 userId: $scope.user._id
-//             }).success(function() {
-//                 console.log('POST success!');
-//             });
-//         }
-//     };
-
-//     $scope.showPanelRight = false;
-//     $scope.togglePanelRight = function() {
-//         $scope.showPanelRight = ($scope.showPanelRight) ? false : true;
-//     };
-
-//     $scope.loadAvatar = function() {
-//         // $scope.showAvatarControls = false;
-//         $http.get('/api/users/me').success(function(user) {
-//             var str = 'url("' + user.avatar + '")';
-//             // $('#avatarDisplay').css('background-image', str); // jQuery refactored to vanilla JS below.
-//             document.getElementById('avatarDisplay').style.backgroundImage = str;
-//         }).error(function(data, status, headers, config) {
-//             console.log('GET error!', '\ndata:', data, '\nstatus:', status, '\nheaders:', headers, '\nconfig:', config);
-//         });
-//     };
-
-//     var previewPhoto = function(file, canvas) {
-//         var image = new Image();
-//         var reader = new FileReader();
-//         $scope.showAvatarControls = true;
-//         $scope.$apply();
-//         reader.onload = function(e) {
-//             image.src = e.target.result;
-
-//             //scale image
-//             var MAX_WIDTH = 80;
-//             var MAX_HEIGHT = 80;
-//             var width = image.width;
-//             var height = image.height;
-//             if (width > height) {
-//                 if (width > MAX_WIDTH) {
-//                     height *= MAX_WIDTH / width;
-//                     width = MAX_WIDTH;
-//                 }
-//             } else {
-//                 if (height > MAX_HEIGHT) {
-//                     width *= MAX_HEIGHT / height;
-//                     height = MAX_HEIGHT;
-//                 }
-//             }
-//             canvas.width = width;
-//             canvas.height = height;
-//             var ctx = canvas.getContext('2d');
-//             ctx.drawImage(image, 0, 0, width, height);
-//         };
-//         reader.readAsDataURL(file);
-//     };
-
-//     $scope.toggle = function() {
-//         // console.log('show', this.show);
-//         this.show = !this.show;
-//         // console.log('show', this.show);
-//     };
-
-//     $scope.previewAvatar = function() {
-//         var file = document.getElementById('avatarInput').files[0];
-//         var canvas = document.getElementById('avatarCanvas');
-//         previewPhoto(file, canvas);
-//     };
-
-//     $scope.saveAvatar = function() {
-//         var encoding = document.getElementById('avatarCanvas').toDataURL();
-//         console.log('save encoding', encoding);
-//         $http.post('/api/users/me', {
-//             propertyValue: encoding,
-//             propertyKey: 'avatar',
-//             userId: $scope.user._id
-//         }).success(function() {
-//             $scope.resetAvatarControls();
-//             $scope.loadAvatar();
-//             console.log('Image saved to database');
-//         });
-//     };
-
-//     $scope.cancelAvatar = function() {
-//         // $('#avatarImage').attr('src', ''); // jQuery refactored to vanilla JS below.
-//         document.getElementById('avatarImage').setAttribute('src', '');
-//     };
-
-//     $scope.resetAvatarControls = function() {
-//         // $('#avatarInput').replaceWith('<input id="avatarInput" ng-show="showAvatar" onchange="angular.element(this).scope().previewAvatar()" type="file" accept="image/*" capture="camera">'); // Refactor jQ to JS below.
-//         document.getElementById('avatarInput').outerHTML = '<input id="avatarInput" ng-show="showAvatar" onchange="angular.element(this).scope().previewAvatar()" type="file" accept="image/*" capture="camera">';
-//         $scope.showAvatarControls = false;
-//         $scope.$apply();
-//     };
-
-//     $scope.toggleStats = function() {
-//         $scope.showStats = !$scope.showStats;
-//         $scope.showAvatar = false;
-//     };
-
-//     $scope.toggleAvatar = function() {
-//         $scope.showAvatar = !$scope.showAvatar;
-//         $scope.showStats = false;
-//     };
-
-//     //--------------------------------------------------
-//     //
-//     //  MAIN PANEL grunt
-//     //
-//     //-------------------------------------------------
-
-//     $scope.chats = {};
-
-//     $scope.refreshChats = function(){
-//       socket.emit('hello');
-//     }
-
-//     $scope.refreshChats();
-
-//     $scope.pullChats = function (){
-//       alert('hello pull chats');
-//       $scope.refreshChats();
-//       $scope.fetchChats();
-//     }
-
-
-//     $scope.fetchChats = function() {
-//       var chatArr = $scope.chats;
-//       chatArr = Object.keys(chatArr).sort();
-//       var chat = $scope.chats[chatArr[0]];
-//       // console.log(chatArr, chat);
-//       socket.emit('fetch', chat)
-//     } 
-
-//     socket.on('newMessage', function(data) {
-//         // console.log('fishon', data);
-//         var newChat = data.data;
-//         $scope.chats[newChat._id] = newChat;
-//         $scope.getAvatars();
-//     });
-
-//     $scope.sendChat = function(chat) {
-//         if (!isChatValid(chat)) {
-//             // console.log('Invalid chat, overriding "send".');
-//             return;
-//         }
-//         socket.emit('newChat', {
-//             user: $scope.user.name,
-//             body: chat.body,
-//             image: '',
-//             type: 200
-//         });
-//         resetChatForm(chat);
-//     }
     var toolsVisible = false;
     $scope.showTools = function() {
         return toolsVisible;
@@ -600,19 +409,6 @@ angular.module('blackBoxApp.controllers', [])
         }
     };
 
-//     $scope.getAvatars = function() {
-//         $scope.avatars = {};
-//         $http.get('/api/users').success(function(usersInDB) {
-//             for (var i = 0; i < usersInDB.length; i++) {
-//                 $scope.avatars[usersInDB[i].name] = usersInDB[i].avatar;
-//             }
-//         });
-//         angular.forEach($scope.chats, function(chat, hash){
-//             if (chat.type !== 200){
-//                 $scope.avatars[chat.user] = chat.pic;
-//             }
-//         })
-//     };
 
     var isChatValid = function(chat) {
         if (chat.body === undefined || chat.body.length > 140) {
@@ -626,14 +422,6 @@ angular.module('blackBoxApp.controllers', [])
         $scope.cannedModel = '';
         chat.body = undefined;
     };
-
-//     $scope.getUsername = function() {
-//         $http.get('/api/users/me').success(function(user) {
-//             $scope.currentUser = user;
-//             $scope.settings.users = user.settings.users;
-//             console.log($scope.settings.users);
-//         });
-//     };
 
     $scope.layer;
     $scope.map;
@@ -741,6 +529,27 @@ angular.module('blackBoxApp.controllers', [])
                 zoom: 5
             }
         };
+
+        navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError);
+
+
+        var onGeoSuccess = function(position) {
+            alert('Latitude: '          + position.coords.latitude          + '\n' +
+                  'Longitude: '         + position.coords.longitude         + '\n' +
+                  'Altitude: '          + position.coords.altitude          + '\n' +
+                  'Accuracy: '          + position.coords.accuracy          + '\n' +
+                  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+                  'Heading: '           + position.coords.heading           + '\n' +
+                  'Speed: '             + position.coords.speed             + '\n' +
+                  'Timestamp: '         + position.timestamp                + '\n');
+        };
+
+        // onGeoError Callback receives a PositionError object
+        //
+        var onGeoError = function(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
     })
 
 

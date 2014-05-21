@@ -7,7 +7,7 @@ app.factory('MenuService', function() {
 
   var menuItems = [
       { text: 'Chats', iconClass: 'icon ion-ios7-bolt', link: 'chats'},
-      { text: '2 Page Two', iconClass: 'icon ion-gear-b', link: 'two'},
+      { text: 'Map', iconClass: 'icon ion-map', link: 'map'},
       { text: '3 Page Three', iconClass: 'icon ion-star', link: 'three'}
   ];
 
