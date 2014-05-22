@@ -1,9 +1,9 @@
 <ion-view title="navTitle" hide-back-button="true" left-buttons="leftButtons" right-buttons="rightButtons"
       hide-back-button="true">
-<div id="map" ng-init="createMap()" ng-hide="hideMap" ng-click="hideMap = !hideMap"></div>
-<div id="pic" ng-init="createPic()" ng-hide="hidePic" ng-click="hidePic = !hidePic"></div>
+  <div id="map" ng-init="createMap()" ng-hide="hideMap" ng-click="hideMap = !hideMap"></div>
+  <div id="pic" ng-init="createPic()" ng-hide="hidePic" ng-click="hidePic = !hidePic"></div>
   <ion-content has-header="true" has-footer="true" padding="true">
-    <ion-refresher on-refresh="$scope.fresh()"
+    <ion-refresher on-refresh="one.fresh()"
                    pulling-text="Pull to refresh..."
                    refreshing-text="Refreshing!"
                    refreshing-icon="ion-loading-c">                     

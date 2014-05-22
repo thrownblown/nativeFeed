@@ -93,3 +93,24 @@
   text-align: right;
   width: 100%
 }
+.warning {
+  background-color: #ffff66;
+}
+.danger {
+  background-color: #ff5050;
+}
+.textField {
+  /*position: relative;*/
+  /*top: 6px;*/
+  /*box-sizing: border-box;*/
+  /*padding: 0 8px 4px 8px;*/
+  background-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ccc;
+  border-radius: 6px;
+  text-align: center;
+}
+#sendButton {
+  border-radius: 6px
+}

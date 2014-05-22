@@ -83,14 +83,14 @@ angular.module('blackBoxApp.controllers', [])
           socket.emit('hello');
         }
 
-        $scope.$parent.pullChats = function (){
+        $scope.pullChats = function (){
           alert('hey hey pulling chats');
           $scope.chats = [];
           $scope.refreshChats();
           $scope.fetchChats();
         }
    
-        $scope.fresh = function() {
+        this.fresh = function() {
             console.log('Refreshing!');
           alert('hey hey pulling chats');
           $scope.chats = [];
@@ -133,54 +133,6 @@ angular.module('blackBoxApp.controllers', [])
         $scope.refreshChats();
 
 
-
-// 'use strict'
-
-// var app = angular.module('feedApp');
-
-// app.factory('socket', function($rootScope) { // MOVE FACTORIES TO A SEPARATE FILE?
-//     var socket = io.connect();
-//     return {
-//         on: function(eventName, callback) {
-//             socket.on(eventName, function() {
-//                 var args = arguments;
-//                 $rootScope.$apply(function() {
-//                     callback.apply(socket, args);
-//                 });
-//             });
-//         },
-//         emit: function(eventName, data, callback) {
-//             socket.emit(eventName, data, function() {
-//                 var args = arguments;
-//                 $rootScope.$apply(function() {
-//                     if (callback) {
-//                         callback.apply(socket, args);
-//                     }
-//                 });
-//             });
-//         }
-//     };
-// });
-
-// app.directive('slidePanel', ['$swipe', function($swipe) { // MOVE DIRECTIVES TO A SEPARATE FILE?
-//     return {
-//         restrict: 'EA',
-//         link: function(scope, elem, attrs, ctrl) {
-//             var startX, pointX;
-//             $swipe.bind(elem, {
-//                 'start': function(coords) {
-//                     startX = coords.x;
-//                     pointX = coords.y;
-//                 },
-//                 'move': function(coords) {
-//                     var delta = coords.x - pointX;
-//                 },
-//                 'end': function(coords) {},
-//                 'cancel': function(coords) {}
-//             });
-//         }
-//     };
-// }]);
 
 
 // var feedbackPerLength = function(length) {

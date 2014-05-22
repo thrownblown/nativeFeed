@@ -19,7 +19,7 @@ blackBoxApp.config(['$stateProvider', '$urlRouterProvider',
 
         .state('chat', {
             url: '/chat',
-            controller: 'OneController',
+            controller: 'OneController as one',
             templateUrl: 'templates/one.html'
         })
         .state('map', {
@@ -58,3 +58,20 @@ blackBoxApp.directive('charLimit', function() { // MOVE DIRECTIVES TO A SEPARATE
         }
     };
 });
+
+var feedbackPerLength = function(length) {
+    var composeField = document.getElementById('composeField');
+    var limit = composeField.attributes.getNamedItem('char-limit').value;
+    switch (true) {
+        case (limit <= length):
+            composeField.classList.add('danger');
+            break;
+        case (limit - length <= 20):
+            composeField.classList.remove('danger');
+            composeField.classList.add('warning');
+            break;
+        default:
+            composeField.classList.remove('danger');
+            composeField.classList.remove('warning');
+    }
+};
